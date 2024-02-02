@@ -124,6 +124,22 @@ INSERT INTO `obat2` (`kode`, `id_penyakit`, `id_obat`, `jum_obat`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel pengguna
+--
+CREATE TABLE `pengguna` (
+  `id` int(11) NOT NULL,
+  `nama_pasien` varchar(200) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `no_kartu` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `pengguna`
+--
+
+INSERT INTO pengguna (id, nama_pasien, username, no_kartu)
+VALUES ("001","Amin","Amin Ramadhan","123456");
+--
 -- Struktur dari tabel `pasien`
 --
 
@@ -290,7 +306,7 @@ INSERT INTO `ruangan_inap` (`id`, `nama_ruang`, `dipakai_sejak`, `dipakai_oleh`,
 
 CREATE TABLE `ruang_inap` (
   `id` int(11) NOT NULL,
-  `nama_ruang` int(11) NOT NULL,
+  `nama_ruang` varchar(11) NOT NULL,
   `id_pasien` varchar(11) NOT NULL,
   `tgl_masuk` varchar(200) NOT NULL,
   `status` int(11) NOT NULL,
@@ -324,6 +340,12 @@ ALTER TABLE `meninggal`
 -- Indeks untuk tabel `obat`
 --
 ALTER TABLE `obat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `pengguna`
+--
+ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id`);
 
 --

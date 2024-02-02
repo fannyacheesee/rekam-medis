@@ -22,11 +22,11 @@
     include 'connect.php';
     if(isset($_POST['submit'])){
       @$user = mysqli_real_escape_string($conn, $_POST['username']);
-      @$pass = mysqli_real_escape_string($conn, $_POST['password']);
+      @$kart = mysqli_real_escape_string($conn, $_POST['no_kartu']);
 
-      $login = mysqli_query($conn, "SELECT * FROM pegawai WHERE username='$user' AND password='$pass'");
-      $cek = mysqli_num_rows($login);
-      $userid = mysqli_fetch_array($login);
+      $regis = mysqli_query($conn, "SELECT * FROM pengguna WHERE username='$user' AND password='$kart'");
+      $cek = mysqli_num_rows($regis);
+      $userid = mysqli_fetch_array($regis);
 
       if($cek == 0){
         echo '
@@ -34,7 +34,7 @@
         setTimeout(function() {
           swal({
             title: "Registrasi Gagal",
-            text: "Username atau Nomor pengguna Anda Salah. Mohon periksa kembali form anda!",
+            text: "Username atau No Kartu Anda Salah. Mohon periksa kembali form anda!",
             icon: "error"
             });
             }, 500);
@@ -42,7 +42,7 @@
             ';
           }else{
             header('location:../');
-            $_SESSION['id_pelanggan'] = $userid['id'];
+            $_SESSION['id_pengguna'] = $userid['id'];
           }
         }
         ?>
@@ -58,7 +58,7 @@
                   </div>
 
                   <div class="card card-primary">
-                    <div class="card-header"><h4>Register</h4></div>
+                    <div class="card-header"><h4>Registrasi</h4></div>
 
                     <div class="card-body">
                       <form method="POST" action="" class="needs-validation" novalidate="" autocomplete="off">
@@ -72,11 +72,11 @@
 
                         <div class="form-group">
                           <div class="d-block">
-                           <label for="password" class="control-label">ID Pelanggan</label>
+                           <label for="password" class="control-label">No Kartu</label>
                          </div>
                          <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                          <div class="invalid-feedback">
-                          Mohon isi id anda!
+                          Mohon isi nomor kartu anda!
                         </div>
                       </div>
 
